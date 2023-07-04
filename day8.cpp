@@ -16,7 +16,7 @@ int main()
 
         if(arr[i]>currentmax)
         {
-            currentmax=arr[i];;
+            currentmax=arr[i];
         }
 
 
