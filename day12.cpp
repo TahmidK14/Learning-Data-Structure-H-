@@ -32,7 +32,7 @@ int main(){
    cout<<"Stack Elements:"<<endl;
 
 
-   for(i = 0; i < 8; i++) {
+   for(i = top; i>=0; i++) {
       cout<<stack[i]<<" ";
    }cout<<endl;
    return 0;
