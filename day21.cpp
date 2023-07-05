@@ -1,42 +1,27 @@
-//find the missing element from two given arrays of integers except one element
+// find and print all distinct elements of a given array of integers
 #include <iostream>
 using namespace std;
 
-int findMissing(int array1[], int array2[], int s1, int s2)
-{
-    int result = 0;
-    for (int i=0; i<s1; i++)
-       result = result^array1[i];
-    for (int i=0; i<s2; i++)
-       result = result^array2[i];
 
-    return result;
-}
 int main()
 {
-    int array1[] = {3, 1, 5, 7, 9};
-    int array2[] = {3, 7, 5, 9};
-     int mn;
-     int s1 = sizeof(array1) / sizeof(array1[0]);
-    int s2 = sizeof(array2) / sizeof(array2[0]);
-        if (s1 != s2-1 && s2 != s1-1)
-    {
-        cout << "Invalid Input";
-        return 0;
-    }
+    int array1[] = {1, 5, 7, 5, 8, 9, 11, 11, 2, 5, 6};
+    int s1 = sizeof(array1)/sizeof(array1[0]);
 
-    cout << "Original arrays: ";
-
-    cout << "\nFirst array: ";
-    for (int i=0; i < s1; i++)
+    cout << "Original array: ";
+    
+    for (int i=0; i < s1; i++) 
     cout << array1[i] <<" ";
-
-    cout << "\nSecond array: ";
-    for (int i=0; i < s2; i++)
-    cout << array2[i] <<" ";
-
-    mn = findMissing(array1, array2, s1, s2);
-    cout <<"\nMissing number: " << mn;
-    return 0;
+    
+    cout <<"\nUnique elements of the said array: ";
+    for (int i=0; i<s1; i++)
+    {
+        int j;
+        for (j=0; j<i; j++)
+           if (array1[i] == array1[j])
+               break;
+         if (i == j)
+          cout << array1[i] << " ";
+    }
+    return 0; 
 }
-
