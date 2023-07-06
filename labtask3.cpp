@@ -32,11 +32,15 @@ void insertionSort(Student arr[], int n) {
 
 void bubbleSort(Student arr[], int n) {
     int i, j;
-    for (i = 0; i < n - 1; i++) {
+    float temp=0;
+    for (i = 0; i < n ; i++) {
         for (j = 0; j < n - i - 1; j++) {
             if (arr[j].cgpa > arr[j + 1].cgpa) {
-                swap(arr[j], arr[j + 1]);
-            }
+                temp=arr[j].cgpa;
+                arr[j].cgpa=arr[j+1].cgpa;
+                arr[j+1].cgpa=temp;
+
+                       }
         }
     }
 }
@@ -68,16 +72,16 @@ void displayElements(Student arr[], int n) {
 
 
 
-int binarySearch(Student arr[], int low, int high, float cgpa) {
+int bS(Student arr[], int low, int high, float cgpa) {
     if (high >= low) {
-        int mid = low + (high - low) / 2;
+        int mid = (low + high)/ 2;
         if (arr[mid].cgpa == cgpa) {
             return mid;
         }
         if (arr[mid].cgpa > cgpa) {
-            return binarySearch(arr, low, mid - 1, cgpa);
+            return bS(arr, low, mid - 1, cgpa);
         }
-        return binarySearch(arr, mid + 1, high, cgpa);
+        return bS(arr, mid + 1, high, cgpa);
     }
     return -1;
 }
@@ -90,14 +94,14 @@ int main() {
 
 
 
-    cout << "Enter student details:" << endl;
+    cout << "Enter student infoermation:" << endl;
     for (int i = 0; i < SIZE; i++) {
         cout << "Student " << i + 1 << endl;
-        cout << "Name: ";
+        cout << "Enter name: ";
         cin >> students[i].name;
-        cout << "ID: ";
+        cout << "Enter ID: ";
         cin >> students[i].id;
-        cout << "CGPA: ";
+        cout << "Enter CGPA: ";
         cin >> students[i].cgpa;
         cout << endl;
     }
@@ -113,40 +117,37 @@ int main() {
         switch (option)
         {
         case 1:
-    cout << "Applying Selection Sort..." << endl;
     selectionSort(students, SIZE);
     displayElements(students, SIZE);
     break;
 
         case 2:
-    cout << "Applying Selection Sort..." << endl;
-    selectionSort(students, SIZE);
+    bubbleSort(students, SIZE);
     displayElements(students, SIZE);
     break;
 
         case 3:
-    cout << "Applying Insertion Sort..." << endl;
     insertionSort(students, SIZE);
     displayElements(students, SIZE);
     break;
 
 
         }
-        float searchCGPA;
+        float cg;
     cout << "Enter CGPA to search: ";
-    cin >> searchCGPA;
+    cin >> cg;
 
 
 
-    int result = binarySearch(students, 0, SIZE - 1, searchCGPA);
+    int index = bS(students, 0, SIZE - 1, cg);
 
 
 
-    if (result == -1) {
+    if (index == -1) {
         cout << "CGPA not found." << endl;
     } else {
-        cout << "CGPA found at index " << result << "." << endl;
-        cout << "Name: " << students[result].name << ", ID: " << students[result].id << ", CGPA: " << students[result].cgpa << endl;
+        cout << "CGPA found of "<< students[index].name <<" at index " << index << "." << endl;
+
     }
 
 
